@@ -1,0 +1,25 @@
+table{
+	border: 1px solid;
+	padding: 10px;
+	background-color: rgb(107, 237, 217);
+}
+th{
+	border:1px solid;
+	background-color: rgb(57, 212, 168);
+	border-radius: 5px;
+}
+td{
+	border: 1px solid;
+	padding: 1px;
+	text-align:center;
+border-radius: 5%;
+}
+
+button.Adicionar{
+	border: 1px slategray;
+border-style: dotted;
+
+
+
+}
+
