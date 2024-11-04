@@ -66,35 +66,49 @@ async function Buscar_Dados(){
     dados.map(dado =>{
         console.log(dado)
         const linha = document.createElement('tr')
+        linha.id= `linha_${dado.id}`
 
         const titulo = document.createElement('td')
         titulo.textContent = dado.titulo
+        titulo.id=`titulo_${dado.id}`
 
         const autor = document.createElement('td')
         autor.textContent = dado.autor
+        autor.id=`autor_${dado.id}`
 
         const tipodelivros = document.createElement('td')
         tipodelivros.textContent = dado.tipodelivro
+        tipodelivros.id=`tipodelivros_${dado.id}`
 
         const preco = document.createElement('td')
         preco.textContent = dado.preco
+        preco.id=`preco_${dado.id}`
 
         const editora = document.createElement('td')
         editora.textContent = dado.editora
+        editora.id=`editora_${dado.id}`
+
 
         const volume = document.createElement('td')
         volume.textContent = dado.volume
+        volume.id=`volume_${dado.id}`
 
         const anodepublicacao = document.createElement('td')
         anodepublicacao.textContent = dado.anodepublicacao
+        anodepublicacao.id=`anodepublicacao_${dado.id}`
 
         const exemplares = document.createElement('td')
-        exemplares.textContent = dado.exemplares                
+        exemplares.textContent = dado.exemplares
+        exemplares.id=`exemplares_${dado.id}`                
 
         const botaoApagar = document.createElement('button')
         botaoApagar.textContent = "APAGAR"
+        botaoApagar.id=`${dado.id}`
+
         const botaoEditar = document.createElement('button')
         botaoEditar.textContent = "EDITAR"
+        botaoEditar.id=`${dado.id}`
+        botaoEditar.setAttribute("onclick",`colocarInput(${botaoEditar.id})`)
         
         
         tabeladedados.appendChild(linha)
@@ -108,6 +122,12 @@ async function Buscar_Dados(){
         linha.appendChild(exemplares)
         linha.appendChild(botaoEditar)
         linha.appendChild(botaoApagar)
+
+        botaoEditar.addEventListener('click',botaoClicado =>{
+        })
+        botaoApagar.addEventListener('click',botaoClicado =>{
+            apagar()
+        })
     })
     return dados
 }
@@ -116,11 +136,11 @@ async function Buscar_Dados(){
 
 
 function colocarInput(id){
-    const elementosDaLinha = document.getElementsByClassName(`${id}`)
+    const elementosDaLinha = document.getElementById(`linha_${id}`).children
     console.log(elementosDaLinha)
     const botaoConcluido = document.getElementById(`${id}`)
-    console.log(botaoConcluido)
-    botaoConcluido.textContent = "CONCLUIDO"
+    botaoConcluido.textContent = 'CONCLUIDO'
+
      for(let i = 0; i < elementosDaLinha.length; i++){
         const input = document.createElement('input')
         input.id = `input_${i}`
@@ -132,6 +152,7 @@ function colocarInput(id){
         
         
          botaoConcluido.removeAttribute("onclick")
+         
          botaoConcluido.addEventListener('click',botaoClicado=>{
             const titulo = document.getElementById("input_0")
             const autor = document.getElementById("input_1")
@@ -148,31 +169,42 @@ function colocarInput(id){
             alert('Dados Editados! Recarregue a página')
          })
         }
-        async function editar(nome,idade,email,id) {
-            const req = await fetch("http://localhost:8080/editarlivros", {
-                method: 'PUT', 
-                headers: {'Content-type': 'Application/JSON'},
-                body: JSON.stringify({
-                    nome: nome,
-                    idade: idade,
-                    email: email,
-                    id: id
-                })
-            })
-            
-       }
-       async function apagar(id) {
-           const req = await fetch("http://localhost:8080/deletarlivros", {
-               method: 'DELETE', 
-               headers: {'Content-type': 'Application/JSON'},
-               body: JSON.stringify({
-                   id:id
-               })
-           })
-           alert('Dados Apagados! Recarregue a página')
-        }
 
-        Buscar_Dados()
+
+
+async function editar(nome,idade,email,id) {
+    const req = await fetch("http://localhost:8080/editarlivros", {
+        method: 'PUT', 
+        headers: {'Content-type': 'Application/JSON'},
+        body: JSON.stringify({
+            nome: nome,
+            idade: idade,
+            email: email,
+            id: id
+        })
+    })
+    
+}
+
+
+
+
+async function apagar(id) {
+   const req = await fetch("http://localhost:8080/deletarlivros", {
+       method: 'DELETE', 
+       headers: {'Content-type': 'Application/JSON'},
+       body: JSON.stringify({
+           id:id
+       })
+   })
+   alert('Dados Apagados! Recarregue a página')
+}
+
+
+
+
+
+Buscar_Dados()
 buttonAdicionar.addEventListener("click",()=>{
     enviardados()
     alert(`dadosenviados!!!!`)

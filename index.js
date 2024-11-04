@@ -4,8 +4,8 @@ const pg = require("pg")
 const app = express()
 const { Client, Pool } = pg
 const pool = new Pool({
-    user: "postgres",
-    password: "12345",
+    user: "gilson"||"postgres",
+    password: "admin"||"12345" ,
     database: "livros",
     port: 5432,
     host: "localhost"
