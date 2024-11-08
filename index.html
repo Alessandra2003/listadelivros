@@ -1,61 +1,66 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<!DOCTYPE html>	
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>listadelivros</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
 </head>
-
 <body>
-    <h1>listadelivros</h1>
-    <label>Título</label>
-    <input type="text" id="inputlivrostitulo" placeholder="Adicionar livros">
+	<div class="container">
+	<main class="caixaDeInputs">
+		<div class="dados">
+			<label>Título</label>
+			<input type="text" name="Titulo">
+		</div>
+		<div class="dados">
+			<label>Autor</label>
+				<input type="text" name="Autor">
+		</div>
+		<div class="dados">
+			<label>Tipo de Livro</label>
+				<label>Acadêmico</label>
+					<input type="checkbox" name="CheckboxAcademico">
+				<label>Literário</label>
+					<input type="checkbox" name="CheckboxLiterario">
+				<label>Didático</label>
+					<input type="checkbox" name="CheckboxDidatico">
+		</div>
+		<div class="dados"></div>	
+			<label>Preço</label>
+			<input type="number" name="Preco">				
+			<label>Editora</label>
+			<input name="Editora">			
+			<label>Volume</label>
+				<input type="number" name="Volume">
+			<label>Ano de Publicação</label>
+				<input type="date" name="AnoDePublicacao"></input>
+			<label>Exemplares</label>
+				<input type="number" name="Exemplares"></input>
+			<label>Resumo</label>
+				<textarea name="Resumo"></textarea>
+			<label>Imagem</label>
+				<input type="url" name="Capa">
+		<button name="enviar">Enviar</button>
+	</main>
 
-    <label>Autor</label>
-    <input type="text" id="inputlivrosautor" placeholder="Adicionar livros">
 
-    <label>Tipo de Livro</label>
-    <input type="text" id="inputlivrostipodelivro" placeholder="Adicionar livros">
 
-    <label>Preço</label>
-    <input type="number" id="inputlivrospreco" placeholder="Adicionar livros">
-    <br>
-    <label>Editora</label>
-    <input type="text" id="inputlivroseditora" placeholder="Adicionar livros">
+	<table>
+		<th>TÍTULO</th>
+		<th>AUTOR</th>
+		<th>TIPO DE LIVRO</th>
+		<th>EDITORA</th>
+		<th>VOLUME</th>
+		<th>ANO DE PUBLICAÇÃO</th>
+		<th>EXEMPLARES</th>
+		<th>RESUMO</th>
+		<th>PREÇO</th>
+		<th>IMAGEM</th>
+		<th class="acoes">Ações</th>
+	</table>
+	</div>
+	<script type="text/javascript" src="script.js"></script>
 
-    <label>Volume</label>
-    <input type="number" id="inputlivrosvolume" placeholder="Adicionar livros">
-
-    <label>Ano de Publicação</label>
-    <input type="date" id="inputlivrosanodepublicacao" placeholder="Adicionar livros">
-
-    <label>Exemplares</label>
-    <input type="number" id="inputlivrosexemplares" placeholder="Adicionar livros">
-    <br>
-    <button id="buttonAdicionar">Adicionar</button>
-    <div>
-        <table id="tabeladedados">
-            <thead>
-                <tr>
-                    <th>titulo</th>
-                    <th>autor</th>
-                    <th>tipo de livros</th>
-                    <th>preço</th>
-                    <th>editora</th>
-                    <th>volume</th>
-                    <th>ano de publicação</th>
-                    <th>exemplares</th>
-                    <th colspan="2">Ações</th>
-                </tr>
-
-            </thead>
-            <tbody id="tbody">
-
-            </tbody>
-        </table>
-    </div>
-    <script src="script.js" type="text/javascript"></script>
 </body>
-
 </html>
