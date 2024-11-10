@@ -125,7 +125,7 @@ app.put('/editarLivros', (req, res) => {
         dados.campo_anodepublicacao,
         dados.campo_exemplares,
         dados.campo_resumo,
-        dados.campo_imagem,
+        dados.campo_capa,
         dados.campo_iddalinha])
 
     res.status(200).json('Livros editados com sucesso!');

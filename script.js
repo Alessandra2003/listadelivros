@@ -24,7 +24,7 @@ let Tipo_De_Livro_Marcado = ()=>{
 	const valoresMarcados = valores.filter(valor =>{if(valor.checked === true){console.log(valor.name);return valor.name}})
 
 	if(valoresMarcados.length > 1){
-		alert("SELECIONE APENAS UM TIPO DE ALIMENTO!")
+		alert("SELECIONE APENAS UM TIPO DE LIVRO!")
 		return "Usuário selecionou mais de um tipo de alimento"
 	}
 	else{
@@ -324,6 +324,7 @@ function Habilitar_Edicao(Botao_Clicado){
 			campo_capa:document.querySelector(`.capa_${ID_Da_Linha_Alterada}`).src // ESSE ELEMENTO AQUI NÃO EXISTE APÓS A RESUBSTIUIÇÃO. POR ISSO ESSA CARNIÇA NÃO TA ENVIANDO
 		}
 		console.log(ID_Da_Linha_Alterada)
+		console.log("DADOS ESTÃO SENDO ENVIADOS!")
 		console.log(campos)
 		
 		Editar_Dados(campos)
