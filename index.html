@@ -18,15 +18,23 @@
 				<input type="text" name="Autor">
 		</div>
 		<div class="dados">
-			<label>Tipo de Livro</label>
-				<label>Acadêmico</label>
-					<input type="checkbox" name="CheckboxAcademico">
-				<label>Literário</label>
-					<input type="checkbox" name="CheckboxLiterario">
-				<label>Didático</label>
-					<input type="checkbox" name="CheckboxDidatico">
+				<label>Tipo de Livro</label>
+			<div class="tipoDeLivro">
+					<label>Acadêmico
+						<input class="tipoDeLivroInput" type="checkbox" name="CheckboxAcademico">
+					</label>
+
+					<label>Literário
+						<input class="tipoDeLivroInput" type="checkbox" name="CheckboxLiterario">
+					</label>
+
+					<label>Didático
+						<input class="tipoDeLivroInput" type="checkbox" name="CheckboxDidatico">
+
+					</label>
+				</div>
 		</div>
-		<div class="dados"></div>	
+		<div class="dados">	
 			<label>Preço</label>
 			<input type="number" name="Preco">				
 			<label>Editora</label>
@@ -42,6 +50,7 @@
 			<label>Imagem</label>
 				<input type="url" name="Capa">
 		<button name="enviar">Enviar</button>
+		</div>
 	</main>
 
 
