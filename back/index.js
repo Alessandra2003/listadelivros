@@ -9,7 +9,7 @@ const { Pool } = require('pg');
 const app = express();
 const port = 8080;
 const address = 'http://localhost:';
-require('dotenv').config({path:'.env.development'})
+require('dotenv').config({path:'./.env.production'})
 
 const createPool = () => { 
     if (process.env.NODE_ENV === "production") {
@@ -41,7 +41,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/buscarLivros', async(req, res) => {
-    pool.query(`CREATE TABLE if not exists listadelivros(
+    pool.query(`CREATE TABLE if not exists produtos_livros_alessandra(
         id serial primary key,
         titulo varchar(50) not null,
         autor varchar(50) not null,
@@ -50,7 +50,7 @@ app.get('/buscarLivros', async(req, res) => {
         editora varchar(30) not null,
         volume int not null,
         ano_de_publicacao date not null,
-        exemplares int not null,
+        quantidade_em_estoque int not null,
         resumo varchar(200),
         capa text
 
@@ -78,7 +78,7 @@ app.post('/enviarLivros', (req, res) => {
         Editora_Recebida: dadosRecebidos.dadosfornecidos.editora,
         Volume_Recebido: dadosRecebidos.dadosfornecidos.volume,
         Ano_De_Publicacao_Recebido: dadosRecebidos.dadosfornecidos.anodepublicacao,
-        Exemplares_Recebido: dadosRecebidos.dadosfornecidos.exemplares,
+        quantidade_em_estoque: dadosRecebidos.dadosfornecidos.exemplares,
         Resumo_Recebido: dadosRecebidos.dadosfornecidos.resumo,
         Capa_Recebida: dadosRecebidos.dadosfornecidos.capa,
     };
@@ -90,7 +90,7 @@ app.post('/enviarLivros', (req, res) => {
     }
     else {
      pool.query(`
-        INSERT INTO listadelivros(titulo,autor,tipo_de_livro,editora,volume,ano_de_publicacao,exemplares,resumo,preco,capa)
+        INSERT INTO produtos_livros_alessandra(titulo,autor,tipo_de_livro,editora,volume,ano_de_publicacao,quantidade_em_estoque,resumo,preco,capa)
         values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,[
         dadosParaEnviar.Titulo_Do_Livro_Recebido,
         dadosParaEnviar.Autor_Do_Livro_Recebido,        
@@ -98,7 +98,7 @@ app.post('/enviarLivros', (req, res) => {
         dadosParaEnviar.Editora_Recebida,
         dadosParaEnviar.Volume_Recebido,
         dadosParaEnviar.Ano_De_Publicacao_Recebido,
-        dadosParaEnviar.Exemplares_Recebido,
+        dadosParaEnviar.quantidade_em_estoque,
         dadosParaEnviar.Resumo_Recebido,
         dadosParaEnviar.Preco_Recebido,
         dadosParaEnviar.Capa_Recebida,
@@ -114,7 +114,7 @@ app.put('/editarLivros', (req, res) => {
         console.log(dados)
         
     pool.query(
-    `UPDATE listadelivros SET titulo=$1, autor=$2, tipo_de_livro=$3, preco=$4, editora=$5, volume=$6, ano_de_publicacao=$7, exemplares=$8, resumo=$9, capa=$10 WHERE id=$11 `
+    `UPDATE produtos_livros_alessandra SET titulo=$1, autor=$2, tipo_de_livro=$3, preco=$4, editora=$5, volume=$6, ano_de_publicacao=$7, quantidade_em_estoque=$8, resumo=$9, capa=$10 WHERE id=$11 `
     ,[
         dados.campo_titulo,
         dados.campo_autor,
@@ -135,7 +135,7 @@ app.delete('/removerLivros', (req, res) => {
     const dadosDeletar = req.body;
     console.log(dadosDeletar)
     
-    pool.query(`DELETE FROM listadelivros WHERE id=$1`,[dadosDeletar.linhaParaApagar])
+    pool.query(`DELETE FROM produtos_livros_alessandra WHERE id=$1`,[dadosDeletar.linhaParaApagar])
     res.status(200).json('Livro removido com sucesso!');
 });
 
