@@ -27,7 +27,7 @@ const createPool = () => {
 };
 
 async function buscarDados(){
-    const buscar = await pool.query("SELECT * FROM listadelivros ORDER BY id")
+    const buscar = await pool.query("SELECT * FROM produtos_livros_alessandra ORDER BY id")
     const dados =  await buscar.rows
     console.log(buscar)
     console.log(dados)
